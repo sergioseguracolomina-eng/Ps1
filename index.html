@@ -27,14 +27,23 @@
 
         .container { max-width: 450px; width: 100%; padding-bottom: 50px; }
 
-        header { display: flex; flex-direction: column; align-items: center; margin: 30px 0; }
+        header { display: flex; flex-direction: column; align-items: center; margin: 30px 0 20px 0; }
         
         .logo-box { 
-            width: 100px; height: 100px; margin-bottom: 15px; 
+            width: 100px; height: 100px; margin-bottom: 5px; 
             filter: drop-shadow(0 0 10px var(--primary-glow)); 
             display: flex; justify-content: center; align-items: center;
         }
         .logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .version-tag {
+            font-family: monospace;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
 
         h1 {
             font-size: 1.4rem; margin: 0; color: var(--primary-red);
@@ -80,6 +89,7 @@
         <div class="logo-box">
             <img src="1000013964.png" alt="Parasyte Book Club Logo">
         </div>
+        <div class="version-tag">V1.0</div>
         <h1>Parasyte Book Club</h1>
     </header>
 
