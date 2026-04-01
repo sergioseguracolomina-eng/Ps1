@@ -30,36 +30,49 @@
             background-color: var(--bg-dark);
             background-image: radial-gradient(circle at 50% -20%, #300, transparent 70%);
             color: var(--text-main);
-            margin: 0; padding: 15px; /* Ligeramente más padding lateral */
+            margin: 0; padding: 15px;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh;
             -webkit-tap-highlight-color: transparent;
-            font-size: 16px; /* Tamaño de fuente base más grande */
+            font-size: 16px;
         }
 
-        .container { max-width: 100%; width: 100%; padding-bottom: 80px; box-sizing: border-box; }
+        /* ARREGLO TAMAÑO: Contenedor al 90% para ocupar la pantalla */
+        .container { 
+            width: 90%; 
+            max-width: 100%; 
+            padding-bottom: 80px; 
+            box-sizing: border-box; 
+        }
 
         header { display: flex; flex-direction: column; align-items: center; margin: 40px 0 25px 0; }
         
+        /* ARREGLO LOGO: Mucho más grande y sin fondo blanco */
         .logo-box { 
-            width: 120px; height: 120px; margin-bottom: 8px; /* Un poco más grande */
-            filter: drop-shadow(0 0 15px var(--primary-glow)); 
+            width: 300px; /* Tamaño triplicado */
+            height: 300px; /* Tamaño triplicado */
+            margin-bottom: 10px;
+            background: none; /* Asegurar que no hay fondo */
+            filter: drop-shadow(0 0 20px var(--primary-glow)); 
             display: flex; justify-content: center; align-items: center;
         }
-        .logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        /* ARREGLO LOGO: El logo ocupa todo el recuadro grande */
+        .logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; background: none; mix-blend-mode: color-burn; } /* blend-mode para forzar quitar blanco si no es transparente */
 
         .version-tag {
             font-family: monospace;
-            font-size: 0.7rem; /* Un pelín más grande */
+            font-size: 0.7rem;
             color: var(--text-muted);
             letter-spacing: 2px;
             margin-bottom: 12px;
             opacity: 0.7;
         }
 
+        /* ARREGLO TÍTULO: Letra más grande y espaciada */
         h1 {
-            font-size: 1.6rem; margin: 0; color: var(--primary-red); /* Título más grande */
-            text-transform: uppercase; letter-spacing: 5px; font-weight: 900;
+            font-size: 2rem; /* Más grande */
+            margin: 0; color: var(--primary-red); 
+            text-transform: uppercase; letter-spacing: 6px; font-weight: 900;
             text-shadow: 0 0 15px rgba(227, 27, 35, 0.3); text-align: center;
         }
 
@@ -103,7 +116,7 @@
         <div class="logo-box">
             <img src="1000013964.png" alt="Logo Parasyte Book Club">
         </div>
-        <div class="version-tag">V1.2 - SIZE & LOGO FIX</div>
+        <div class="version-tag">V1.3 - FULLSCREEN & BIG LOGO FIX</div>
         <h1>Parasyte Book Club</h1>
     </header>
 
