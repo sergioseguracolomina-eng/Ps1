@@ -2,8 +2,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Parasyte Book Club</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Parasyte">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#050505">
+    
+    <link rel="apple-touch-icon" href="1000013964.png">
+    <link rel="icon" type="image/png" href="1000013964.png">
+
     <style>
         :root {
             --bg-dark: #050505;
@@ -23,63 +33,67 @@
             margin: 0; padding: 10px;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .container { max-width: 450px; width: 100%; padding-bottom: 50px; }
+        .container { max-width: 450px; width: 100%; padding-bottom: 80px; }
 
-        header { display: flex; flex-direction: column; align-items: center; margin: 30px 0 20px 0; }
+        header { display: flex; flex-direction: column; align-items: center; margin: 40px 0 20px 0; }
         
         .logo-box { 
-            width: 100px; height: 100px; margin-bottom: 5px; 
-            filter: drop-shadow(0 0 10px var(--primary-glow)); 
+            width: 110px; height: 110px; margin-bottom: 5px; 
+            filter: drop-shadow(0 0 15px var(--primary-glow)); 
             display: flex; justify-content: center; align-items: center;
         }
         .logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         .version-tag {
             font-family: monospace;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--text-muted);
             letter-spacing: 2px;
             margin-bottom: 10px;
-            opacity: 0.7;
+            opacity: 0.6;
         }
 
         h1 {
-            font-size: 1.4rem; margin: 0; color: var(--primary-red);
-            text-transform: uppercase; letter-spacing: 4px; font-weight: 900;
-            text-shadow: 0 0 10px rgba(227, 27, 35, 0.2); text-align: center;
+            font-size: 1.5rem; margin: 0; color: var(--primary-red);
+            text-transform: uppercase; letter-spacing: 5px; font-weight: 900;
+            text-shadow: 0 0 15px rgba(227, 27, 35, 0.3); text-align: center;
         }
 
-        .tabs { display: flex; background: #000; padding: 4px; border-radius: 30px; border: 1px solid var(--border); margin-bottom: 20px; }
-        .tab { flex: 1; text-align: center; padding: 10px; cursor: pointer; border-radius: 25px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); transition: 0.3s; }
-        .tab.active { background: var(--primary-red); color: #000; box-shadow: 0 0 15px var(--primary-glow); }
+        .tabs { display: flex; background: #000; padding: 5px; border-radius: 30px; border: 1px solid var(--border); margin: 25px 0; }
+        .tab { flex: 1; text-align: center; padding: 12px; cursor: pointer; border-radius: 25px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); transition: 0.3s; }
+        .tab.active { background: var(--primary-red); color: #000; box-shadow: 0 0 20px var(--primary-glow); }
 
-        .form-card { background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 25px; position: relative; }
-        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid var(--border); border-radius: 8px; background: #000; color: #fff; font-size: 0.9rem; box-sizing: border-box; }
-        input:focus { outline: none; border-color: var(--primary-red); box-shadow: 0 0 8px var(--primary-glow); }
+        .form-card { background: var(--bg-card); padding: 20px; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 30px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid var(--border); border-radius: 12px; background: #000; color: #fff; font-size: 1rem; box-sizing: border-box; appearance: none; }
+        input:focus { outline: none; border-color: var(--primary-red); box-shadow: 0 0 10px var(--primary-glow); }
 
-        .btn-add { width: 100%; background: #000; color: var(--primary-red); border: 2px solid var(--primary-red); padding: 14px; border-radius: 30px; font-weight: 900; text-transform: uppercase; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        .btn-add:hover { background: var(--primary-red); color: #000; }
+        .btn-add { width: 100%; background: #000; color: var(--primary-red); border: 2px solid var(--primary-red); padding: 16px; border-radius: 35px; font-weight: 900; text-transform: uppercase; cursor: pointer; margin-top: 15px; transition: 0.3s; letter-spacing: 1px; }
+        .btn-add:active { transform: scale(0.98); background: var(--primary-red); color: #000; }
 
-        #search-results { background: #18181b; border: 1px solid var(--primary-red); border-radius: 8px; max-height: 250px; overflow-y: auto; display: none; position: absolute; width: calc(100% - 40px); z-index: 100; box-shadow: 0 10px 30px #000; }
-        .book-item { padding: 10px; border-bottom: 1px solid #27272a; cursor: pointer; display: flex; gap: 12px; align-items: center; }
-        .book-item:hover { background: #27272a; }
-        .book-item img { width: 35px; height: 50px; object-fit: cover; border-radius: 3px; }
-        .book-item div { font-size: 0.8rem; line-height: 1.2; }
+        #search-results { background: #0a0a0a; border: 1px solid var(--primary-red); border-radius: 12px; max-height: 300px; overflow-y: auto; display: none; position: absolute; width: calc(100% - 40px); z-index: 100; box-shadow: 0 15px 40px #000; }
+        .book-item { padding: 12px; border-bottom: 1px solid #1a1a1a; cursor: pointer; display: flex; gap: 15px; align-items: center; }
+        .book-item img { width: 45px; height: 65px; object-fit: cover; border-radius: 4px; }
+        .book-item div { font-size: 0.9rem; }
 
-        .card { background: var(--bg-card); display: flex; gap: 15px; padding: 15px; border-radius: 14px; margin-bottom: 12px; border: 1px solid var(--border); position: relative; }
-        .card img { width: 65px; height: 95px; border-radius: 6px; object-fit: cover; }
+        .card { background: var(--bg-card); display: flex; gap: 15px; padding: 18px; border-radius: 18px; margin-bottom: 15px; border: 1px solid var(--border); position: relative; transition: 0.3s; }
+        .card img { width: 75px; height: 110px; border-radius: 8px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .info { flex: 1; }
-        .date { font-family: monospace; color: var(--primary-red); font-size: 0.8rem; margin-bottom: 4px; }
-        .info h3 { margin: 0; font-size: 1rem; color: #fff; }
-        .info p { margin: 4px 0 0; font-size: 0.8rem; color: var(--text-muted); }
+        .date { font-family: monospace; color: var(--primary-red); font-size: 0.85rem; font-weight: bold; margin-bottom: 6px; }
+        .info h3 { margin: 0; font-size: 1.1rem; color: #fff; line-height: 1.2; }
+        .info p { margin: 6px 0 0; font-size: 0.85rem; color: var(--text-muted); }
 
-        .actions { display: flex; flex-direction: column; gap: 8px; border-left: 1px solid var(--border); padding-left: 12px; justify-content: center; }
-        .btn-act { background: #111; border: 1px solid var(--border); color: var(--text-muted); padding: 8px; border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 1rem; }
-        .btn-act:hover { border-color: var(--primary-red); color: var(--primary-red); }
+        .actions { display: flex; flex-direction: column; gap: 10px; border-left: 1px solid var(--border); padding-left: 15px; justify-content: center; }
+        .btn-act { background: #18181b; border: 1px solid var(--border); color: var(--text-muted); padding: 10px; border-radius: 10px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
+        .btn-act:active { border-color: var(--primary-red); color: var(--primary-red); background: #220000; }
 
-        .done { opacity: 0.4; filter: grayscale(1); }
+        .done { opacity: 0.35; filter: grayscale(1); }
+
+        /* Estilo para el botón de sincronización manual */
+        .sync-footer { margin-top: 20px; display: flex; gap: 10px; opacity: 0.5; }
+        .btn-sync { background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.7rem; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -87,9 +101,9 @@
 <div class="container">
     <header>
         <div class="logo-box">
-            <img src="1000013964.png" alt="Parasyte Book Club Logo">
+            <img src="1000013964.png" alt="Logo">
         </div>
-        <div class="version-tag">V1.0</div>
+        <div class="version-tag">V1.1 - PWA READY</div>
         <h1>Parasyte Book Club</h1>
     </header>
 
@@ -101,12 +115,17 @@
     <div id="form-area" class="form-card">
         <input type="text" id="clubName" placeholder="Nombre del Club">
         <input type="date" id="clubDate">
-        <input type="text" id="bookSearch" placeholder="Título, Autor o ISBN..." oninput="searchBooks(this.value)">
+        <input type="text" id="bookSearch" placeholder="Buscar libro..." oninput="searchBooks(this.value)">
         <div id="search-results"></div>
         <button class="btn-add" id="mainButton" onclick="addClub()">Agendar Club</button>
     </div>
 
     <div id="main-list"></div>
+
+    <div class="sync-footer">
+        <button class="btn-sync" onclick="exportData()">Copiar Backup</button>
+        <button class="btn-sync" onclick="importData()">Cargar Backup</button>
+    </div>
 </div>
 
 <script>
@@ -126,10 +145,10 @@
             if (!data.items) return;
             data.items.forEach(item => {
                 const info = item.volumeInfo;
-                const thumb = info.imageLinks ? info.imageLinks.smallThumbnail : 'https://via.placeholder.com/35x50?text=N/A';
+                const thumb = info.imageLinks ? info.imageLinks.smallThumbnail : '';
                 const div = document.createElement('div');
                 div.className = 'book-item';
-                div.innerHTML = `<img src="${thumb}"><div><strong>${info.title}</strong><br><span style="color:#777">${info.authors ? info.authors[0] : ''}</span></div>`;
+                div.innerHTML = `<img src="${thumb}"><div><strong>${info.title}</strong><br><small>${info.authors ? info.authors[0] : ''}</small></div>`;
                 div.onclick = () => {
                     selectedBook = { title: info.title, cover: info.imageLinks ? info.imageLinks.thumbnail : '' };
                     document.getElementById('bookSearch').value = info.title;
@@ -145,7 +164,7 @@
         const date = document.getElementById('clubDate').value;
         const bookSearchValue = document.getElementById('bookSearch').value;
 
-        if (!name || !date || !bookSearchValue) return alert("Rellena todos los campos");
+        if (!name || !date || !bookSearchValue) return;
 
         if (editingId) {
             const index = clubs.findIndex(c => c.id === editingId);
@@ -158,15 +177,19 @@
             editingId = null;
             document.getElementById('mainButton').innerText = "Agendar Club";
         } else {
-            if (!selectedBook) return alert("Selecciona un libro de la lista desplegable");
+            if (!selectedBook) { alert("Selecciona un libro de la lista"); return; }
             clubs.push({ id: Date.now(), name, date, title: selectedBook.title, cover: selectedBook.cover, done: false });
         }
 
+        clearForm();
+        save();
+    }
+
+    function clearForm() {
         document.getElementById('clubName').value = '';
         document.getElementById('clubDate').value = '';
         document.getElementById('bookSearch').value = '';
         selectedBook = null;
-        save();
     }
 
     function editClub(id) {
@@ -200,7 +223,7 @@
             const card = document.createElement('div');
             card.className = `card ${c.done ? 'done' : ''}`;
             card.innerHTML = `
-                <img src="${c.cover || ''}">
+                <img src="${c.cover || ''}" onerror="this.src='https://via.placeholder.com/75x110?text=No+Cover'">
                 <div class="info">
                     <div class="date">${c.date.split('-').reverse().join('/')}</div>
                     <h3>${c.title}</h3>
@@ -222,9 +245,30 @@
     }
 
     function del(id) {
-        if(confirm("¿Eliminar?")) {
+        if(confirm("¿Eliminar este club?")) {
             clubs = clubs.filter(i => i.id !== id);
             save();
+        }
+    }
+
+    // Funciones de Sincronización Manual (Backup)
+    function exportData() {
+        const dataStr = btoa(JSON.stringify(clubs));
+        navigator.clipboard.writeText(dataStr);
+        alert("¡Copia de seguridad copiada al portapapeles! Envíatela por mensaje para cargarla en otro dispositivo.");
+    }
+
+    function importData() {
+        const code = prompt("Pega aquí el código de backup:");
+        if (code) {
+            try {
+                const decoded = JSON.parse(atob(code));
+                if (Array.isArray(decoded)) {
+                    clubs = decoded;
+                    save();
+                    alert("¡Datos cargados con éxito!");
+                }
+            } catch (e) { alert("Código no válido."); }
         }
     }
 
