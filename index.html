@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parasyte Book Club</title>
     
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,18 +30,19 @@
             background-color: var(--bg-dark);
             background-image: radial-gradient(circle at 50% -20%, #300, transparent 70%);
             color: var(--text-main);
-            margin: 0; padding: 10px;
+            margin: 0; padding: 15px; /* Ligeramente más padding lateral */
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh;
             -webkit-tap-highlight-color: transparent;
+            font-size: 16px; /* Tamaño de fuente base más grande */
         }
 
-        .container { max-width: 450px; width: 100%; padding-bottom: 80px; }
+        .container { max-width: 100%; width: 100%; padding-bottom: 80px; box-sizing: border-box; }
 
-        header { display: flex; flex-direction: column; align-items: center; margin: 40px 0 20px 0; }
+        header { display: flex; flex-direction: column; align-items: center; margin: 40px 0 25px 0; }
         
         .logo-box { 
-            width: 110px; height: 110px; margin-bottom: 5px; 
+            width: 120px; height: 120px; margin-bottom: 8px; /* Un poco más grande */
             filter: drop-shadow(0 0 15px var(--primary-glow)); 
             display: flex; justify-content: center; align-items: center;
         }
@@ -49,51 +50,50 @@
 
         .version-tag {
             font-family: monospace;
-            font-size: 0.6rem;
+            font-size: 0.7rem; /* Un pelín más grande */
             color: var(--text-muted);
             letter-spacing: 2px;
-            margin-bottom: 10px;
-            opacity: 0.6;
+            margin-bottom: 12px;
+            opacity: 0.7;
         }
 
         h1 {
-            font-size: 1.5rem; margin: 0; color: var(--primary-red);
+            font-size: 1.6rem; margin: 0; color: var(--primary-red); /* Título más grande */
             text-transform: uppercase; letter-spacing: 5px; font-weight: 900;
             text-shadow: 0 0 15px rgba(227, 27, 35, 0.3); text-align: center;
         }
 
-        .tabs { display: flex; background: #000; padding: 5px; border-radius: 30px; border: 1px solid var(--border); margin: 25px 0; }
-        .tab { flex: 1; text-align: center; padding: 12px; cursor: pointer; border-radius: 25px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); transition: 0.3s; }
+        .tabs { display: flex; background: #000; padding: 6px; border-radius: 35px; border: 1px solid var(--border); margin: 30px 0; width: 100%; box-sizing: border-box; }
+        .tab { flex: 1; text-align: center; padding: 14px; cursor: pointer; border-radius: 30px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); transition: 0.3s; }
         .tab.active { background: var(--primary-red); color: #000; box-shadow: 0 0 20px var(--primary-glow); }
 
-        .form-card { background: var(--bg-card); padding: 20px; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 30px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid var(--border); border-radius: 12px; background: #000; color: #fff; font-size: 1rem; box-sizing: border-box; appearance: none; }
+        .form-card { background: var(--bg-card); padding: 25px; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 35px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; box-sizing: border-box;}
+        input { width: 100%; padding: 16px; margin: 12px 0; border: 1px solid var(--border); border-radius: 12px; background: #000; color: #fff; font-size: 1rem; box-sizing: border-box; appearance: none; }
         input:focus { outline: none; border-color: var(--primary-red); box-shadow: 0 0 10px var(--primary-glow); }
 
-        .btn-add { width: 100%; background: #000; color: var(--primary-red); border: 2px solid var(--primary-red); padding: 16px; border-radius: 35px; font-weight: 900; text-transform: uppercase; cursor: pointer; margin-top: 15px; transition: 0.3s; letter-spacing: 1px; }
+        .btn-add { width: 100%; background: #000; color: var(--primary-red); border: 2px solid var(--primary-red); padding: 18px; border-radius: 40px; font-weight: 900; text-transform: uppercase; cursor: pointer; margin-top: 20px; transition: 0.3s; letter-spacing: 1px; font-size: 1rem; }
         .btn-add:active { transform: scale(0.98); background: var(--primary-red); color: #000; }
 
-        #search-results { background: #0a0a0a; border: 1px solid var(--primary-red); border-radius: 12px; max-height: 300px; overflow-y: auto; display: none; position: absolute; width: calc(100% - 40px); z-index: 100; box-shadow: 0 15px 40px #000; }
-        .book-item { padding: 12px; border-bottom: 1px solid #1a1a1a; cursor: pointer; display: flex; gap: 15px; align-items: center; }
-        .book-item img { width: 45px; height: 65px; object-fit: cover; border-radius: 4px; }
+        #search-results { background: #0a0a0a; border: 1px solid var(--primary-red); border-radius: 12px; max-height: 350px; overflow-y: auto; display: none; position: absolute; width: calc(100% - 50px); z-index: 100; box-shadow: 0 15px 40px #000; }
+        .book-item { padding: 15px; border-bottom: 1px solid #1a1a1a; cursor: pointer; display: flex; gap: 15px; align-items: center; }
+        .book-item img { width: 50px; height: 70px; object-fit: cover; border-radius: 4px; }
         .book-item div { font-size: 0.9rem; }
 
-        .card { background: var(--bg-card); display: flex; gap: 15px; padding: 18px; border-radius: 18px; margin-bottom: 15px; border: 1px solid var(--border); position: relative; transition: 0.3s; }
-        .card img { width: 75px; height: 110px; border-radius: 8px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        .info { flex: 1; }
-        .date { font-family: monospace; color: var(--primary-red); font-size: 0.85rem; font-weight: bold; margin-bottom: 6px; }
-        .info h3 { margin: 0; font-size: 1.1rem; color: #fff; line-height: 1.2; }
-        .info p { margin: 6px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+        .card { background: var(--bg-card); display: flex; gap: 18px; padding: 20px; border-radius: 20px; margin-bottom: 20px; border: 1px solid var(--border); position: relative; transition: 0.3s; width: 100%; box-sizing: border-box;}
+        .card img { width: 85px; height: 125px; border-radius: 8px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.5); flex-shrink: 0;}
+        .info { flex: 1; display: flex; flex-direction: column; justify-content: center;}
+        .date { font-family: monospace; color: var(--primary-red); font-size: 0.9rem; font-weight: bold; margin-bottom: 8px; }
+        .info h3 { margin: 0; font-size: 1.2rem; color: #fff; line-height: 1.3; }
+        .info p { margin: 8px 0 0; font-size: 0.9rem; color: var(--text-muted); }
 
-        .actions { display: flex; flex-direction: column; gap: 10px; border-left: 1px solid var(--border); padding-left: 15px; justify-content: center; }
-        .btn-act { background: #18181b; border: 1px solid var(--border); color: var(--text-muted); padding: 10px; border-radius: 10px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
+        .actions { display: flex; flex-direction: column; gap: 12px; border-left: 1px solid var(--border); padding-left: 20px; justify-content: center; flex-shrink: 0;}
+        .btn-act { background: #18181b; border: 1px solid var(--border); color: var(--text-muted); padding: 12px; border-radius: 12px; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
         .btn-act:active { border-color: var(--primary-red); color: var(--primary-red); background: #220000; }
 
-        .done { opacity: 0.35; filter: grayscale(1); }
+        .done { opacity: 0.4; filter: grayscale(1); }
 
-        /* Estilo para el botón de sincronización manual */
-        .sync-footer { margin-top: 20px; display: flex; gap: 10px; opacity: 0.5; }
-        .btn-sync { background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.7rem; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .sync-footer { margin-top: 30px; display: flex; gap: 15px; opacity: 0.6; width: 100%; justify-content: center;}
+        .btn-sync { background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem; padding: 8px 15px; border-radius: 8px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -101,9 +101,9 @@
 <div class="container">
     <header>
         <div class="logo-box">
-            <img src="1000013964.png" alt="Logo">
+            <img src="1000013964.png" alt="Logo Parasyte Book Club">
         </div>
-        <div class="version-tag">V1.1 - PWA READY</div>
+        <div class="version-tag">V1.2 - SIZE & LOGO FIX</div>
         <h1>Parasyte Book Club</h1>
     </header>
 
@@ -223,7 +223,7 @@
             const card = document.createElement('div');
             card.className = `card ${c.done ? 'done' : ''}`;
             card.innerHTML = `
-                <img src="${c.cover || ''}" onerror="this.src='https://via.placeholder.com/75x110?text=No+Cover'">
+                <img src="${c.cover || ''}" onerror="this.src='https://via.placeholder.com/85x125?text=No+Cover'">
                 <div class="info">
                     <div class="date">${c.date.split('-').reverse().join('/')}</div>
                     <h3>${c.title}</h3>
